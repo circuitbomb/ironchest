@@ -228,7 +228,9 @@ public class BlockIronChest extends BlockContainer {
                 entityitem.motionZ = (float) random.nextGaussian() * f3;
                 if (itemstack.hasTagCompound())
                 {
-                    entityitem.getEntityItem().setTagCompound((NBTTagCompound) itemstack.getTagCompound().copy());
+                    //entityitem.getEntityItem().setTagCompound((NBTTagCompound) itemstack.getTagCompound().copy());
+                	entityitem.getEntityData().setCompoundTag(entityitem.getEntityName(), (NBTTagCompound) itemstack.getTagCompound().copy());
+                    
                 }
                 world.spawnEntityInWorld(entityitem);
             }
