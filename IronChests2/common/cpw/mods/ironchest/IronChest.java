@@ -7,6 +7,11 @@
  *
  * Contributors:
  *     cpw - initial API and implementation
+ *     Circuitbomb - forked 3-3-2013
+ *         
+ * Changes:
+ * 	   Updated to After FML 4.7.3 @ after Forge 6.6
+ * 
  ******************************************************************************/
 package cpw.mods.ironchest;
 
@@ -31,7 +36,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-@Mod(modid = "IronChest", name = "Iron Chests", dependencies = "required-after:Forge@[6.5,);required-after:FML@[4.7.22,)")
+@Mod(modid = "IronChest", name = "Iron Chests", dependencies = "required-after:Forge@[6.6,);required-after:FML@[4.7.3,)")
 @NetworkMod(channels = { "IronChest" }, versionBounds = "[5.1,)", clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class)
 public class IronChest {
     public static BlockIronChest ironChestBlock;
@@ -74,7 +79,8 @@ public class IronChest {
         GameRegistry.registerBlock(ironChestBlock, ItemIronChest.class, "BlockIronChest");
         for (IronChestType typ : IronChestType.values())
         {
-            GameRegistry.registerTileEntityWithAlternatives(typ.clazz, "IronChest."+typ.name(), typ.name());
+            //GameRegistry.registerTileEntityWithAlternatives(typ.clazz, "IronChest."+typ.name(), typ.name());
+            GameRegistry.registerTileEntity(typ.clazz, "IronChest."+ typ.name());
             LanguageRegistry.instance().addStringLocalization(typ.name() + ".name", "en_US", typ.friendlyName);
             proxy.registerTileEntitySpecialRenderer(typ);
         }
